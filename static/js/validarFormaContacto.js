@@ -11,11 +11,15 @@ $.validator.setDefaults( {
           correo: {
             required: true,
             email: true
-          }
+          },
+          motivo:"required"
+          
         },
         messages: {
-          nombre: "Inserta el nombre, weon",
-          email: "Please enter a valid email address"
+          nombre: "Debe ingresar un nombre.",
+          correo: "Debe ingresar un correo valido.",
+          motivo:"Debe seleccionar una motivo."
+          
         },
         errorElement: "em",
         errorPlacement: function ( error, element ) {
