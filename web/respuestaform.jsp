@@ -35,10 +35,7 @@
     </head>
     
 <body id="page-top">
-    <%
-        
-        String nombre = request.getParameter("nombre");
-    %>
+    
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -72,8 +69,18 @@
       <div class="row h-100">
         <div class="col-md-8 mx-auto">
           <h2 class="section-heading">
-        <h1 class="display-4">Bienvenido <%= nombre %> su consulta ha sido enviada con exito.</h1>
-        <h1> Email: </h1>
+        <%
+        String mensaje;
+        if(Boolean.parseBoolean(request.getParameter("valido"))){
+           mensaje="es valido"; 
+            
+        }else{
+            mensaje=request.getParameter("mensaje");
+            
+        }
+        %>
+        
+        <h1> <%=mensaje%> </h1>
         <h1> Numero: </h1>
         <h1> Motivo: </h1>
         <h1> Consulta: </h1>

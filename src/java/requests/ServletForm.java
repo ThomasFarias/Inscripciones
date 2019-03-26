@@ -35,7 +35,7 @@ public class ServletForm extends HttpServlet {
         String email;
         String telefono;
         String consulta;
-        String mensaje = "";
+        String mensaje = "55555555555555";
         Boolean valido = true;
         
         nombre = request.getAttribute("nombre").toString(); 
@@ -65,18 +65,10 @@ public class ServletForm extends HttpServlet {
            mensaje.concat("El correo electronico no es válido\n");
             valido = false;
         }
-        
-        if(valido)
-        {
-            request.setAttribute("valido", valido);
-            request.setAttribute("mensaje", mensaje);
+        request.setAttribute("valido", valido);
+        request.setAttribute("mensaje", mensaje);  
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/requests/respuestaform.jsp");
             rd.forward(request, response);
-        }
-        else
-        {
-        
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
