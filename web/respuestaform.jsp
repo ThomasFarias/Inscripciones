@@ -71,17 +71,18 @@
           <h2 class="section-heading">
         <%
         String mensaje;
-        if(Boolean.parseBoolean(request.getParameter("valido"))){
+        if(Boolean.parseBoolean(request.getAttribute("valido").toString())){
            mensaje="es valido"; 
             
         }else{
-            mensaje=request.getParameter("mensaje");
+            mensaje=request.getAttribute("mensaje").toString();
+            
             
         }
         %>
         
         <h1> <%=mensaje%> </h1>
-        <h1> Numero: </h1>
+        <h1> Numero: <%=request.getParameter("telefono")%> </h1>
         <h1> Motivo: </h1>
         <h1> Consulta: </h1>
           <div class="badges">

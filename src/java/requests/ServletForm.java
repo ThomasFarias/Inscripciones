@@ -35,40 +35,43 @@ public class ServletForm extends HttpServlet {
         String email;
         String telefono;
         String consulta;
-        String mensaje = "55555555555555";
+        String mensaje = "";
         Boolean valido = true;
         
-        nombre = request.getAttribute("nombre").toString(); 
-        telefono = request.getAttribute("telefono").toString(); 
-        consulta = request.getAttribute("consulta").toString(); 
-        email = request.getAttribute("email").toString(); 
+        nombre = request.getParameter("nombre"); 
+        telefono = request.getParameter("telefono"); 
+        consulta = request.getParameter("consulta"); 
+        email = request.getParameter("correo"); 
         
-        if(nombre == "")
+        if(nombre.equals(""))
         {
-            mensaje.concat("El nombre no es válido\n");
+            mensaje  = mensaje.concat("El nombre no es válido\n");
             valido = false;
         }
         if(telefono.length()<8)
         {
-            mensaje.concat("El telefono no es válido\n");
+            mensaje  = mensaje.concat("El telefono no es válido\n");
             valido = false;
         }
         
         if(consulta.length()<1)
         {
-            mensaje.concat("La consulta no es válida\n");
+           mensaje  = mensaje.concat("La consulta no es válida\n");
             valido = false;
         }
         
         if(email.length()<1)
         {
-           mensaje.concat("El correo electronico no es válido\n");
+           mensaje  = mensaje.concat("El correo electronico no es válido\n");
             valido = false;
         }
+        
+        
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/respuestaform.jsp");
         request.setAttribute("valido", valido);
-        request.setAttribute("mensaje", mensaje);  
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/requests/respuestaform.jsp");
-            rd.forward(request, response);
+        request.setAttribute("mensaje", mensaje);
+        rd.forward(request, response);
+           
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
