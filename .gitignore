@@ -1,6 +1,4 @@
 
 /build/
-nbproject/project.properties
-nbproject/private/private.properties
+nbproject/private/
 /dist/
-nbproject/genfiles.properties
