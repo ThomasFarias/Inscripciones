@@ -7,6 +7,7 @@ package requests;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,12 +32,12 @@ public class ServletForm extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        ArrayList<String> datos = new ArrayList<String>(); //datos no validos del formulario
         String nombre;
         String email;
         String telefono;
         String consulta;
-        String mensaje = "";
-        Boolean valido = true;
+        
         
         nombre = request.getParameter("nombre"); 
         telefono = request.getParameter("telefono"); 
@@ -45,31 +46,30 @@ public class ServletForm extends HttpServlet {
         
         if(nombre.equals(""))
         {
-            mensaje  = mensaje.concat("El nombre no es válido\n");
-            valido = false;
+            datos.add("nombre");
+            
         }
         if(telefono.length()<8)
         {
-            mensaje  = mensaje.concat("El telefono no es válido\n");
-            valido = false;
+           datos.add("telefono");
+           
         }
         
         if(consulta.length()<1)
         {
-           mensaje  = mensaje.concat("La consulta no es válida\n");
-            valido = false;
+           datos.add("consulta");
+            
         }
         
         if(email.length()<1)
         {
-           mensaje  = mensaje.concat("El correo electronico no es válido\n");
-            valido = false;
+           datos.add("correo electronico");
+            
         }
         
         
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/respuestaform.jsp");
-        request.setAttribute("valido", valido);
-        request.setAttribute("mensaje", mensaje);
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/respuestaform.jsp");        
+        request.setAttribute("datos",datos); //datos no validos del formulario
         rd.forward(request, response);
            
     }

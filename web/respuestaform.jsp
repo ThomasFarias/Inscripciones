@@ -4,6 +4,8 @@
     Author     : cetecom
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -68,23 +70,38 @@
     <div class="container h-100">
       <div class="row h-100">
         <div class="col-md-8 mx-auto">
-          <h2 class="section-heading">
-        <%
-        String mensaje;
-        if(Boolean.parseBoolean(request.getAttribute("valido").toString())){
-           mensaje="es valido"; 
-            
-        }else{
-            mensaje=request.getAttribute("mensaje").toString();
-            
-            
-        }
-        %>
+          <h1 class="section-heading">
+       
+        <div class=" text-dark  ">            
         
-        <h1> <%=mensaje%> </h1>
-        <h1> Numero: <%=request.getParameter("telefono")%> </h1>
-        <h1> Motivo: </h1>
-        <h1> Consulta: </h1>
+            <% 
+            ArrayList<String> datos;
+            String nombre,email,telefono,consulta;        
+            datos = (ArrayList<String>)request.getAttribute("datos");
+            request.setCharacterEncoding("UTF-8");
+            
+            
+            if(!datos.isEmpty()){  
+                
+                out.println("<b>La consulta no se ha podido envíar, los siguientes datos nos son validos: </b><br>");
+                
+                for(String dato : datos){                     
+                    out.println("<h1>"+dato+"</h1>");                    
+                }
+                
+            }else{
+                
+                nombre=request.getParameter("nombre");
+                email=request.getParameter("correo");
+                telefono=request.getParameter("telefono");
+                consulta=request.getParameter("consulta");
+                out.println("<p class='display-4'>Felicidades"+nombre+", la consulta se ha enviado correctamente."+"</p><br>");
+               
+            
+            }
+               %> 
+        
+       </div>
           <div class="badges">
           </div>
         </div>
