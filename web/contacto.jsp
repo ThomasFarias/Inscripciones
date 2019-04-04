@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+<%@ include file="/shared/header.html" %>
+<%@ include file="/shared/nav.html" %>
+<%@ include file="/shared/footer.html" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<html lang="es">
+
+<body id="page-top">
   <section class="features" id="features">
     <div class="container section-heading text-center  pt-4 p-4">
         <h2>Contacto</h2>
@@ -56,3 +62,5 @@
       </div>
     </div>
   </section>
+</body>
+</html>

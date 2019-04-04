@@ -6,7 +6,6 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -59,7 +58,7 @@
             <a class="nav-link js-scroll-trigger" href="contacto.html">Contacto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="login.html">Iniciar SesiÃ³n</a>
+            <a class="nav-link js-scroll-trigger" href="login.html">Iniciar Sesión</a>
           </li>
         </ul>
       </div>
@@ -83,7 +82,7 @@
             
             if(!datos.isEmpty()){  
                 
-                out.println("<b><h1 class='display-4 text-dark font-weight-lighter'>La consulta no se ha podido envÃ­ar, los siguientes datos nos son validos: </b></h1><br>");
+                out.println("<b><h1 class='display-4 text-dark font-weight-lighter'>La consulta no se ha podido envíar, los siguientes datos nos son validos: </b></h1><br>");
                 
                 for(String dato : datos){                     
                     out.println("<h4 class='text-dark font-weight-light '>"+dato+"</h4>");                    
@@ -116,7 +115,7 @@
   </section>
 <footer class="fixed-bottom">
     <div class="container">
-      <p>&copy; Pagina de Ayuda de InscripciÃ³n de Asignaturas</p>
+      <p>&copy; Pagina de Ayuda de Inscripción de Asignaturas</p>
       <ul class="list-inline">
         <li class="list-inline-item">
           <a href="#">Privacidad</a>
