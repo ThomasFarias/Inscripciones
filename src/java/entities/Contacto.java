@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -24,59 +25,61 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Thomas
+ * @author cetecom
  */
 @Entity
 @Table(name = "contacto", catalog = "inscripciones", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Contacto.findAll", query = "SELECT c FROM Contacto c")
-    , @NamedQuery(name = "Contacto.findByIdContacto", query = "SELECT c FROM Contacto c WHERE c.idContacto = :idContacto")
-    , @NamedQuery(name = "Contacto.findByNombreContacto", query = "SELECT c FROM Contacto c WHERE c.nombreContacto = :nombreContacto")
-    , @NamedQuery(name = "Contacto.findByApellidoContacto", query = "SELECT c FROM Contacto c WHERE c.apellidoContacto = :apellidoContacto")
-    , @NamedQuery(name = "Contacto.findByCorreo", query = "SELECT c FROM Contacto c WHERE c.correo = :correo")
-    , @NamedQuery(name = "Contacto.findByTelefono", query = "SELECT c FROM Contacto c WHERE c.telefono = :telefono")
-    , @NamedQuery(name = "Contacto.findByMotivo", query = "SELECT c FROM Contacto c WHERE c.motivo = :motivo")
-    , @NamedQuery(name = "Contacto.findByRequerimiento", query = "SELECT c FROM Contacto c WHERE c.requerimiento = :requerimiento")
-    , @NamedQuery(name = "Contacto.findByFechaEnvio", query = "SELECT c FROM Contacto c WHERE c.fechaEnvio = :fechaEnvio")})
+    @NamedQuery(name = "Contacto.findAll", query = "SELECT c FROM Contacto c"),
+    @NamedQuery(name = "Contacto.findByIdContacto", query = "SELECT c FROM Contacto c WHERE c.idContacto = :idContacto"),
+    @NamedQuery(name = "Contacto.findByNombre", query = "SELECT c FROM Contacto c WHERE c.nombre = :nombre"),
+    @NamedQuery(name = "Contacto.findByApelldContacto", query = "SELECT c FROM Contacto c WHERE c.apelldContacto = :apelldContacto"),
+    @NamedQuery(name = "Contacto.findByCorreo", query = "SELECT c FROM Contacto c WHERE c.correo = :correo"),
+    @NamedQuery(name = "Contacto.findByTelefono", query = "SELECT c FROM Contacto c WHERE c.telefono = :telefono"),
+    @NamedQuery(name = "Contacto.findByMotivo", query = "SELECT c FROM Contacto c WHERE c.motivo = :motivo"),
+    @NamedQuery(name = "Contacto.findByFechaEnvio", query = "SELECT c FROM Contacto c WHERE c.fechaEnvio = :fechaEnvio")})
 public class Contacto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID_CONTACTO", nullable = false)
+    @Column(name = "ID_CONTACTO")
     private Integer idContacto;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "NOMBRE_CONTACTO", nullable = false, length = 30)
-    private String nombreContacto;
+    @Column(name = "NOMBRE")
+    private String nombre;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "APELLIDO_CONTACTO", nullable = false, length = 30)
-    private String apellidoContacto;
+    @Column(name = "APELLD_CONTACTO")
+    private String apelldContacto;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "CORREO", nullable = false, length = 30)
+    @Column(name = "CORREO")
     private String correo;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "TELEFONO", nullable = false)
+    @Column(name = "TELEFONO")
     private int telefono;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "MOTIVO", nullable = false, length = 30)
+    @Column(name = "MOTIVO")
     private String motivo;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 300)
-    @Column(name = "REQUERIMIENTO", nullable = false, length = 300)
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "REQUERIMIENTO")
     private String requerimiento;
-    @Column(name = "FECHA_ENVIO")
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "fecha_envio")
     @Temporal(TemporalType.DATE)
     private Date fechaEnvio;
 
@@ -87,14 +90,15 @@ public class Contacto implements Serializable {
         this.idContacto = idContacto;
     }
 
-    public Contacto(Integer idContacto, String nombreContacto, String apellidoContacto, String correo, int telefono, String motivo, String requerimiento) {
+    public Contacto(Integer idContacto, String nombre, String apelldContacto, String correo, int telefono, String motivo, String requerimiento, Date fechaEnvio) {
         this.idContacto = idContacto;
-        this.nombreContacto = nombreContacto;
-        this.apellidoContacto = apellidoContacto;
+        this.nombre = nombre;
+        this.apelldContacto = apelldContacto;
         this.correo = correo;
         this.telefono = telefono;
         this.motivo = motivo;
         this.requerimiento = requerimiento;
+        this.fechaEnvio = fechaEnvio;
     }
 
     public Integer getIdContacto() {
@@ -105,20 +109,20 @@ public class Contacto implements Serializable {
         this.idContacto = idContacto;
     }
 
-    public String getNombreContacto() {
-        return nombreContacto;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreContacto(String nombreContacto) {
-        this.nombreContacto = nombreContacto;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getApellidoContacto() {
-        return apellidoContacto;
+    public String getApelldContacto() {
+        return apelldContacto;
     }
 
-    public void setApellidoContacto(String apellidoContacto) {
-        this.apellidoContacto = apellidoContacto;
+    public void setApelldContacto(String apelldContacto) {
+        this.apelldContacto = apelldContacto;
     }
 
     public String getCorreo() {
