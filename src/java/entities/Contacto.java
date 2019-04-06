@@ -139,6 +139,7 @@ public class Contacto implements Serializable {
     }
 
     public Date getFechaEnvio() {
+        
         return fechaEnvio;
     }
 

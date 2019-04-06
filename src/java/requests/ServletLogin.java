@@ -8,11 +8,8 @@ package requests;
 import entities.Contacto;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,9 +20,9 @@ import models.ContactoFacadeLocal;
 
 /**
  *
- * @author cetecom
+ * @author Thomas
  */
-public class ServletForm extends HttpServlet {
+public class ServletLogin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,66 +37,24 @@ public class ServletForm extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ArrayList<String> datos = new ArrayList<String>(); //datos no validos del formulario
-        String nombre;
-        String email;
-        String telefono;
-        String consulta;
-        String motivo;
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	Date date = new Date();
-        int cant;
-        Contacto c = new Contacto();
+                
+        List<Contacto> contactos = new ArrayList<Contacto>();
+        try{
+        contactos = contacto.findAll();
+        }catch(Exception e)
+        {}
+        
+        
+        System.out.println(contactos);
+       
+       
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/respuestalogin.jsp");        
+        request.setAttribute("contactos",contactos);
+        rd.forward(request, response);
         
        
+      
         
-        
-        nombre = request.getParameter("nombre"); 
-        telefono = request.getParameter("telefono"); 
-        consulta = request.getParameter("consulta"); 
-        email = request.getParameter("correo"); 
-        motivo = request.getParameter("motivo");
-        
-        
-        try{            
-            c.setIdContacto(null);
-            c.setFechaEnvio(date);
-            c.setNombreContacto(nombre);
-            c.setMotivo(motivo);
-            c.setRequerimiento(consulta);
-            c.setCorreo(email);
-            c.setTelefono(Integer.parseInt(telefono)); 
-            contacto.create(c);            
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        
-        
-        
-        if(nombre.equals(""))
-        {
-            datos.add("nombre");
-            
-        }
-        
-        
-        if(consulta.length()<1)
-        {
-           datos.add("consulta");
-            
-        }
-        
-        if(email.length()<1)
-        {
-           datos.add("correo electronico");
-            
-        }
-        
-        
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/respuestaform.jsp");        
-        request.setAttribute("datos",datos); //datos no validos del formulario
-        rd.forward(request, response);
-           
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
