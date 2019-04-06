@@ -3,7 +3,11 @@
 <%@ include file="/shared/footer.html" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="es">
+<script src="static/js/validarFormaContacto.js">
 
+ 
+
+</script>
 <body id="page-top">
   <section class="features" id="features">
     <div class="container section-heading text-center  pt-4 p-4">
@@ -30,7 +34,7 @@
           <div class="form-group row">
             <label  class="col-sm-2 col-form-label">Numero</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="telefono">
+              <input type="text" class="form-control" id="telefono" name="telefono">
             </div>
           </div>
             
@@ -45,6 +49,9 @@
                 </select>
             </div>
           </div>
+             
+
+
           
           <div class="form-group row">
            <label  class="col-sm-2 col-form-label">Consulta</label>
@@ -62,5 +69,6 @@
       </div>
     </div>
   </section>
+      
 </body>
 </html>
