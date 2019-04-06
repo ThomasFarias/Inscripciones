@@ -37,13 +37,14 @@ public class ServletForm extends HttpServlet {
         String email;
         String telefono;
         String consulta;
+        int cant;
         
         
         nombre = request.getParameter("nombre"); 
         telefono = request.getParameter("telefono"); 
         consulta = request.getParameter("consulta"); 
         email = request.getParameter("correo"); 
-        
+        cant=1;
         if(nombre.equals(""))
         {
             datos.add("nombre");
