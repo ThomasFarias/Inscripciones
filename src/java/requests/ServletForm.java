@@ -5,14 +5,21 @@
  */
 package requests;
 
+import entities.Contacto;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.ContactoFacadeLocal;
 
 /**
  *
@@ -29,6 +36,7 @@ public class ServletForm extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @EJB ContactoFacadeLocal contacto;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -37,14 +45,37 @@ public class ServletForm extends HttpServlet {
         String email;
         String telefono;
         String consulta;
+        String motivo;
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	Date date = new Date();
         int cant;
+        Contacto c = new Contacto();
+        
+       
         
         
         nombre = request.getParameter("nombre"); 
         telefono = request.getParameter("telefono"); 
         consulta = request.getParameter("consulta"); 
         email = request.getParameter("correo"); 
-        cant=1;
+        motivo = request.getParameter("motivo");
+        
+        
+        try{            
+            c.setIdContacto(null);
+            c.setFechaEnvio(date);
+            c.setNombreContacto(nombre);
+            c.setMotivo(motivo);
+            c.setRequerimiento(consulta);
+            c.setCorreo(email);
+            c.setTelefono(Integer.parseInt(telefono)); 
+            contacto.create(c);            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+        
+        
         if(nombre.equals(""))
         {
             datos.add("nombre");
