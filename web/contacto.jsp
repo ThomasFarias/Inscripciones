@@ -3,11 +3,8 @@
 <%@ include file="/shared/footer.html" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="es">
-<script src="static/js/validarFormaContacto.js">
-
- 
-
-</script>
+     <script src="static/js/jquery.validate.js"></script>
+    <script src="static/js/validarFormaContacto.js"></script>
 <body id="page-top">
   <section class="features" id="features">
     <div class="container section-heading text-center  pt-4 p-4">
