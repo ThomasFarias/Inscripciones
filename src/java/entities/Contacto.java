@@ -40,6 +40,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Contacto.findByFechaEnvio", query = "SELECT c FROM Contacto c WHERE c.fechaEnvio = :fechaEnvio")})
 public class Contacto implements Serializable {
 
+    @Column(name = "fecha_envio")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaEnvio;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,9 +74,7 @@ public class Contacto implements Serializable {
     @Size(min = 1, max = 300)
     @Column(name = "REQUERIMIENTO", nullable = false, length = 300)
     private String requerimiento;
-    @Column(name = "FECHA_ENVIO")
-    @Temporal(TemporalType.DATE)
-    private Date fechaEnvio;
+    
 
     public Contacto() {
     }
@@ -171,5 +173,6 @@ public class Contacto implements Serializable {
     public String toString() {
         return "entities.Contacto[ idContacto=" + idContacto + " ]";
     }
+
     
 }

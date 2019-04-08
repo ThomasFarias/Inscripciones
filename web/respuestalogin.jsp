@@ -29,7 +29,7 @@
   </thead>
   <tbody>
       <%
-          SimpleDateFormat dt = new SimpleDateFormat("dd-MM-yyyy");
+          SimpleDateFormat dt = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
           Vector<Contacto> contactos = new Vector<Contacto>();
           contactos=(Vector<Contacto>)request.getAttribute("contactos");
           try
