@@ -1,4 +1,5 @@
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Vector"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -28,6 +29,7 @@
   </thead>
   <tbody>
       <%
+          SimpleDateFormat dt = new SimpleDateFormat("dd-MM-yyyy");
           Vector<Contacto> contactos = new Vector<Contacto>();
           contactos=(Vector<Contacto>)request.getAttribute("contactos");
           try
@@ -41,7 +43,7 @@
               out.println("<td>"+c.getTelefono()+" </td>");
               out.println("<td>"+c.getMotivo()+" </td>");
               out.println("<td>"+c.getRequerimiento()+" </td>");
-              out.println("<td>"+c.getFechaEnvio()+" </td");
+              out.println("<td>"+dt.format(c.getFechaEnvio())+" </td");
                out.println("<tr>");
               
           }

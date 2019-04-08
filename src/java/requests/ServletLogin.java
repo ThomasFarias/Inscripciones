@@ -40,9 +40,11 @@ public class ServletLogin extends HttpServlet {
                 
         List<Contacto> contactos = new ArrayList<Contacto>();
         try{
-        contactos = contacto.findAll();
-        }catch(Exception e)
-        {}
+            contactos = contacto.findAll();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
         
         
         System.out.println(contactos);
