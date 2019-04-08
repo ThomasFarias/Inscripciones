@@ -46,9 +46,8 @@ public class ServletForm extends HttpServlet {
         String telefono;
         String consulta;
         String motivo;
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	Date date = new Date();
-        int cant;
+        
         Contacto c = new Contacto();
         
        

@@ -44,10 +44,9 @@ public class ServletLogin extends HttpServlet {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-        }
+        }   
         
         
-        System.out.println(contactos);
        
        
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/respuestalogin.jsp");        
