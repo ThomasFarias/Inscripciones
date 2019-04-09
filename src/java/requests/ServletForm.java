@@ -37,6 +37,7 @@ public class ServletForm extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @EJB ContactoFacadeLocal contacto;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -50,15 +51,11 @@ public class ServletForm extends HttpServlet {
         
         Contacto c = new Contacto();
         
-       
-        
-        
         nombre = request.getParameter("nombre"); 
         telefono = request.getParameter("telefono"); 
         consulta = request.getParameter("consulta"); 
         email = request.getParameter("correo"); 
         motivo = request.getParameter("motivo");
-        
         
         try{            
             c.setIdContacto(null);
@@ -93,6 +90,7 @@ public class ServletForm extends HttpServlet {
            datos.add("correo electronico");
             
         }
+        contacto.create(c);
         
         
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/respuestaform.jsp");        

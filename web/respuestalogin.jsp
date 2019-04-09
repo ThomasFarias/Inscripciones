@@ -9,8 +9,6 @@
 <%@ include file="/shared/footer.html" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<jsp:useBean id="usuario" class="entities.Usuario" scope="session" />
-
 <html lang="es">
      <script src="static/js/jquery.validate.js"></script>
     <script src="static/js/validarFormaContacto.js"></script>
@@ -33,39 +31,22 @@
     </tr>
   </thead>
   <tbody>
-      <%
-          SimpleDateFormat dt = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
-          Vector<Contacto> contactos = new Vector<Contacto>();
+      <%  SimpleDateFormat dt = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
+          Vector<Contacto> contactos = new Vector<>();
           contactos=(Vector<Contacto>)request.getAttribute("contactos");
-          try
-          {                
+          try{                
           for (Contacto c : contactos){
               out.println("<tr>");
               out.println("<th scope='row'>"+c.getIdContacto()+"</th>");
-                  out.println("<td>"+c.getNombreContacto()+"</td>");
+              out.println("<td>"+c.getNombreContacto()+"</td>");
               out.println("<td>"+c.getCorreo()+" </td>");
               out.println("<td>"+c.getTelefono()+" </td>");
               out.println("<td>"+c.getMotivo()+" </td>");
               out.println("<td>"+c.getRequerimiento()+" </td>");
               out.println("<td>"+dt.format(c.getFechaEnvio())+" </td");
-               out.println("<tr>");
-              
-          }
-          
+              out.println("<tr>"); }  
           }catch(Exception e){
-          }
-          
-      
-      
-      
-         
-    
-      
-      
-      
-      %>
-   
-    
+          } %>  
   </tbody>
 </table>
 </article>

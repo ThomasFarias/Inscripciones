@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="usuario" class="models.UsuarioFacade" scope="session" />
 <!DOCTYPE html>
 ﻿<!DOCTYPE html>
 <!-- Menú Navegacion -->
@@ -14,7 +15,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="index.jsp">Inicio</a>
+            <a class="nav-link js-scroll-trigger" href="agregar.jsp">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="nosotros.jsp">Nosotros</a>
@@ -23,7 +24,15 @@
             <a class="nav-link js-scroll-trigger" href="contacto.jsp">Contacto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="login.jsp">Iniciar Sesión</a>
+              <% if(usuario.isLogged())
+              {
+                  out.println("<a class=\"nav-link js-scroll-trigger\" href=\"login.jsp\">Agregar Usuario</a>");
+              } else
+              {
+                out.println("<a class=\"nav-link js-scroll-trigger\" href=\"login.jsp\">Iniciar Sesión</a>");
+
+              }
+              %>
           </li>
         </ul>
       </div>

@@ -1,6 +1,4 @@
-
-
-    $( document ).ready( function () {
+ $( document ).ready( function () {
       $( "#formaContacto" ).validate( {
         rules: {
           nombre: "required",

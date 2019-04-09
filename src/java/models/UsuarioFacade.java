@@ -8,7 +8,9 @@ package models;
 import entities.Usuario;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
+import javax.enterprise.context.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -17,6 +19,7 @@ import javax.persistence.PersistenceContext;
  * @author matia
  */
 @Stateless
+
 public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
 
     boolean isLogged = false;
@@ -46,6 +49,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
          return null;
      }
      
+    @Override
      public boolean authenticate(String email, String password)
      {
         Usuario usr = getByMail(email);
