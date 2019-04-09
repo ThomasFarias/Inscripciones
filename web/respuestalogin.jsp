@@ -31,8 +31,9 @@
     </tr>
   </thead>
   <tbody>
-      <%  SimpleDateFormat dt = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
-          Vector<Contacto> contactos = new Vector<>();
+      <%  
+          SimpleDateFormat dt = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
+          Vector<Contacto> contactos = new Vector<Contacto>();
           contactos=(Vector<Contacto>)request.getAttribute("contactos");
           try{                
           for (Contacto c : contactos){
@@ -46,7 +47,8 @@
               out.println("<td>"+dt.format(c.getFechaEnvio())+" </td");
               out.println("<tr>"); }  
           }catch(Exception e){
-          } %>  
+          } 
+      %>  
   </tbody>
 </table>
 </article>
