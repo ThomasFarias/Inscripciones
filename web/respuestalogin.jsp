@@ -5,14 +5,19 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="entities.Contacto"%>
 <%@ include file="/shared/header.html" %>
-<%@ include file="/shared/nav.html" %>
+<%@ include file="/shared/nav.jsp" %>
 <%@ include file="/shared/footer.html" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<jsp:useBean id="usuario" class="entities.Usuario" scope="session" />
+
 <html lang="es">
      <script src="static/js/jquery.validate.js"></script>
     <script src="static/js/validarFormaContacto.js"></script>
 <body id="page-top" class="container-fluid">
-    <section class="d-flex justify-content-center row"> <h1 class="display-2 text-dark text-center col-12">Bienvenido</h1>
+    <section class="d-flex justify-content-center row"> 
+        <h1 class="display-2 text-dark text-center col-12">Bienvenido</h1>
+        <h1 class="display-3 text-dark text-center col-12">Bienvenido</h1>
     <article class="col-8"> 
         <table class="table table-striped">
   <thead>
@@ -34,7 +39,6 @@
           contactos=(Vector<Contacto>)request.getAttribute("contactos");
           try
           {                
-              
           for (Contacto c : contactos){
               out.println("<tr>");
               out.println("<th scope='row'>"+c.getIdContacto()+"</th>");

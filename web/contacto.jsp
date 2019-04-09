@@ -1,5 +1,5 @@
 <%@ include file="/shared/header.html" %>
-<%@ include file="/shared/nav.html" %>
+<%@ include file="/shared/nav.jsp" %>
 <%@ include file="/shared/footer.html" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="es">

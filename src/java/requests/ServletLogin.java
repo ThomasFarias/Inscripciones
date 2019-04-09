@@ -6,6 +6,7 @@
 package requests;
 
 import entities.Contacto;
+import entities.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.ContactoFacadeLocal;
+import models.UsuarioFacadeLocal;
 
 /**
  *
@@ -34,27 +36,41 @@ public class ServletLogin extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @EJB ContactoFacadeLocal contacto;
+    @EJB UsuarioFacadeLocal usuario;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-                
-        List<Contacto> contactos = new ArrayList<Contacto>();
-        try{
-            contactos = contacto.findAll();
+        
+        boolean isLogged=false;
+        String email = request.getParameter("email");;
+        String password  = request.getParameter("password");         
+        List<Contacto> contactos = new ArrayList<>();
+        
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/respuestalogin.jsp");   
+        
+        if(usuario.authenticate(email,password))
+            isLogged = usuario.isLogged();
+        
+        request.setAttribute("isLogged",isLogged);
+        if(isLogged)
+        {
+            try{
+                contactos = contacto.findAll();
+                request.setAttribute("contactos",contactos);
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+            
         }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-        }   
-        
-        
-       
-       
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/respuestalogin.jsp");        
-        request.setAttribute("contactos",contactos);
+        else
+        {
+             rd = getServletContext().getRequestDispatcher("/login.jsp");
+             request.setAttribute("isLogged",isLogged);
+        }
         rd.forward(request, response);
         
-       
-      
         
     }
 
