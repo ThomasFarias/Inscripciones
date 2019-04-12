@@ -1,7 +1,10 @@
+<%-- Cargar archivos comunes: Cabecera, Barra Navegacion, Pie de Pagina--%>
 <%@ include file="/shared/header.html" %>
 <%@ include file="/shared/nav.jsp" %>
 <%@ include file="/shared/footer.html" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%-- NO HACE NADA EL INDEX POR AHORA--%>
 <html lang="es">
     <body id="page-top">
         <header class="masthead">

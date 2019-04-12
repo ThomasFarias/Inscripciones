@@ -1,7 +1,10 @@
+<%-- Archivos comunes: header, barra nav y pie de pagina--%>
 <%@ include file="/shared/header.html" %>
 <%@ include file="/shared/nav.jsp" %>
 <%@ include file="/shared/footer.html" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%-- Solo muestra información--%>
 <html lang="es">
     <body id="page-top">
         <section class="download bg-primary text-center h-100" id="download">

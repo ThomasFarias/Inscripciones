@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package requests;
 
 import entities.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,24 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.UsuarioFacadeLocal;
 
-/**
- *
- * @author matia
- */
-
-
-
 public class ServletAgregar extends HttpServlet {
     
     @EJB UsuarioFacadeLocal usuarioFacade;
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * PROCESA EL REQUEST PROVENIENTE DE "agregar.jsp"
+     * SI LOS DATOS SON VALIDOS SE INSERTA UN USUARIO NUEVO
+     * EN LA BASE DE DATOS
+
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,6 +25,7 @@ public class ServletAgregar extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/respuestaagregar.jsp");        
         
+        //Se instancia un usuario con los datos del formulario
         Usuario nuevo_usuario = new Usuario(
                 0, 
                 request.getParameter("nombre"), 
@@ -54,18 +39,23 @@ public class ServletAgregar extends HttpServlet {
             System.out.println("Apellidos "+nuevo_usuario.getApellidos());
             System.out.println("Email: "+nuevo_usuario.getEmail());
             System.out.println("Password: "+nuevo_usuario.getPassword());
-            usuarioFacade.create(nuevo_usuario);
             
+            //Se usa la "fachada" de usuario para acceder al metodo de creacion
+            //de un usuario en la base de datos.
+            usuarioFacade.create(nuevo_usuario);
+            //Se pasa la respuesta a respuestaagregar.jsp para mostrar el resultado
+            //de la operación.
             request.setAttribute("nombre", nuevo_usuario.getNombre());
             request.setAttribute("error", false);
             
         }catch(Exception e)
         {
+            //Si hay error se envia el parametro error = true
             request.setAttribute("error", true);
             System.out.println(e);
             
         }
-        
+        //Se envia la respuesta.
         rd.forward(request, response);
     }
 

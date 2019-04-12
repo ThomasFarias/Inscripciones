@@ -1,8 +1,3 @@
-<%-- 
-    Document   : respuestaform
-    Created on : 26-mar-2019, 17:44:32
-    Author     : cetecom
---%>
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -15,7 +10,7 @@
 <html>
     
 
-  <title>Acerca de Nosotros</title>
+  <title>Contacto</title>
 
     
     <body id="page-top">
@@ -31,7 +26,8 @@
                 datos = (ArrayList<String>)request.getAttribute("datos");
                 request.setCharacterEncoding("UTF-8");
 
-
+                //datos ALMACENA LOS DATOS NO VALIDOS, ENVIADOS POR EL SERVLET
+                // SI HAY DATOS NO VALIDOS SE MUESTRA UN MENSAJE DE ERROR
                 if(!datos.isEmpty()){  
 
                     out.println("<b><h1 class='display-4 text-dark font-weight-lighter'>La consulta no se ha podido envíar, los siguientes datos nos son validos: </b></h1><br>");
@@ -41,7 +37,8 @@
                     }
 
                 }else{
-
+                    // SI NO HAY ERROR
+                    // SE MUESTRA LA INFORMACION ENVIADA DE CONTACTO
                     nombre=request.getParameter("nombre");
                     email=request.getParameter("correo");
                     telefono=request.getParameter("telefono");

@@ -86,7 +86,6 @@ public class ServletForm extends HttpServlet {
            datos.add("correo electronico");
             
         }
-        contacto.create(c);
         
         
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/respuestaform.jsp");        
