@@ -6,49 +6,42 @@
 package requests;
 
 import java.io.IOException;
-import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import models.UsuarioFacadeLocal;
+
 /**
  *
- * @author Thomas y Matías
+ * @author matia
  */
-public class ServletLogin extends HttpServlet {
+public class ServletAgregar extends HttpServlet {
 
-    @EJB UsuarioFacadeLocal usuario;
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        //Elementos de la respuesta al navegador.
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session=request.getSession();
-        //RequestDispatcher rd = getServletContext().getRequestDispatcher("/ServletContactos");
-        
-        //Variables para autenticacion
-        String email = request.getParameter("email");
-        String password  = request.getParameter("password");
-        System.out.println("Cargado ServletLogin con datos: "+email+":"+password);
-        //Autenticar con los datos obtenidos.        
-        usuario.authenticate(email,password);
-    
-        if(usuario.isLogged())
-        {
-            session.setAttribute("nombre",usuario.getByMail(email).getNombre());
-            session.setAttribute("isLogged",true);
-            System.out.println("Usuario Logueado");
-            response.getWriter().write("exito");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ServletAgregar</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ServletAgregar at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        else
-        {
-           // rd = getServletContext().getRequestDispatcher("/login.jsp");
-        }
-       // rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

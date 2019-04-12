@@ -33,7 +33,7 @@
                         usuario.nombre = (String)session.getAttribute("nombre");       
                       }
                   }catch(Exception ex){
-                       System.out.println("ERROR");
+                       System.out.println("ERROR DE SESION");
                   }
  %>
  
