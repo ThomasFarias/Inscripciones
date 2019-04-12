@@ -4,6 +4,8 @@
     Author     : matia
 --%>
 
+<%@page import="models.UsuarioFacadeLocal"%>
+<%@page import="models.UsuarioFacade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="usuario" class="models.UsuarioFacade" scope="session" />
 <!DOCTYPE html>
@@ -24,14 +26,26 @@
             <a class="nav-link js-scroll-trigger" href="contacto.jsp">Contacto</a>
           </li>
           <li class="nav-item">
-              <% if(usuario.isLogged())
-              {
+              <% 
+                  UsuarioFacadeLocal us;            
+                  boolean flag = false;  
+                  
+                  try{
+                      us=(UsuarioFacadeLocal)session.getAttribute("user");
+                      flag=us.isLogged();                       
+                      
+                  }catch(Exception ex){
+                  }            
+              
+                   if(flag)
+              {                 
                   out.println("<a class=\"nav-link js-scroll-trigger\" href=\"login.jsp\">Agregar Usuario</a>");
               } else
-              {
+              {                 
                 out.println("<a class=\"nav-link js-scroll-trigger\" href=\"login.jsp\">Iniciar Sesión</a>");
 
               }
+                     
               %>
           </li>
         </ul>

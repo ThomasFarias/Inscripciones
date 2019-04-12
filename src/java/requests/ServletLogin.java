@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import models.ContactoFacadeLocal;
 import models.UsuarioFacadeLocal;
 
@@ -46,18 +47,21 @@ public class ServletLogin extends HttpServlet {
         String email = request.getParameter("email");;
         String password  = request.getParameter("password");         
         List<Contacto> contactos = new ArrayList<>();
-        
+        HttpSession session=request.getSession();
+         
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/respuestalogin.jsp");   
         
         if(usuario.authenticate(email,password))
             isLogged = usuario.isLogged();
-        
+            
         request.setAttribute("isLogged",isLogged);
         if(isLogged)
         {
+            session.setAttribute("user",usuario);
             try{
                 contactos = contacto.findAll();
                 request.setAttribute("contactos",contactos);
+                session.setAttribute("user",usuario);
             }
             catch(Exception e){
                 System.out.println(e.getMessage());
