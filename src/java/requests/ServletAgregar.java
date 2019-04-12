@@ -5,19 +5,27 @@
  */
 package requests;
 
+import entities.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.UsuarioFacadeLocal;
 
 /**
  *
  * @author matia
  */
-public class ServletAgregar extends HttpServlet {
 
+
+
+public class ServletAgregar extends HttpServlet {
+    
+    @EJB UsuarioFacadeLocal usuarioFacade;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -29,19 +37,36 @@ public class ServletAgregar extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletAgregar</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletAgregar at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/respuestaagregar.jsp");        
+        
+        Usuario nuevo_usuario = new Usuario(
+                0, 
+                request.getParameter("nombre"), 
+                request.getParameter("apellidos"),
+                request.getParameter("correo"),
+                request.getParameter("password"));
+        try 
+        {
+            System.out.println("Agregando usuario nuevo...");
+            System.out.println("Nombre "+nuevo_usuario.getNombre());
+            System.out.println("Apellidos "+nuevo_usuario.getApellidos());
+            System.out.println("Email: "+nuevo_usuario.getEmail());
+            System.out.println("Password: "+nuevo_usuario.getPassword());
+            usuarioFacade.create(nuevo_usuario);
+            
+            request.setAttribute("nombre", nuevo_usuario.getNombre());
+            request.setAttribute("error", false);
+            
+        }catch(Exception e)
+        {
+            request.setAttribute("error", true);
+            System.out.println(e);
+            
         }
+        
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

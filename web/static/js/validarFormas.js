@@ -100,7 +100,8 @@
         messages: {
           nombre: "Debe ingresar un nombre valido.",
           correo: "Debe ingresar un correo valido.",
-          apellidos:"Debe ingresar un apellido valido "
+          apellidos:"Debe ingresar un apellido valido. ",
+          password:"Este campo es requerido. "
           
         },
         errorElement: "em",
