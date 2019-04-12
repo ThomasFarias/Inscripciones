@@ -17,58 +17,54 @@
                     <%-- FORMULARIO CONTACTO--%>
                     <form method="post" class="col-7" id="formaContacto" action="ServletForm"> 
                         
-                    <div class="form-group row ">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Nombre</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nombre" name="nombre">
+                        <div class="form-group row ">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Nombre</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="nombre" name="nombre">
+                            </div>
                         </div>
-                    </div>
-          
-                    <div class="form-group row">
-                        <label  class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="correo">
+
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="correo">
+                            </div>
                         </div>
-                    </div>
-          
-          <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Numero</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="telefono" name="telefono">
-            </div>
-          </div>
-            
-          <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Motivo</label>
-            <div class="col-sm-10">
-                <select class="form-control" id="motivo" name="motivo">
-                  <option value="">Seleccione opción</option>
-                  <option value="incribir">Inscribir ramo</option>
-                  <option value="cupo">Cupo de ramo</option>
-                  <option value="solicitar cupo">Solicitar cupo</option>
-                </select>
-            </div>
-          </div>
-             
 
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">Número</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="telefono" name="telefono">
+                            </div>
+                        </div>
 
-          
-          <div class="form-group row">
-           <label  class="col-sm-2 col-form-label">Consulta</label>
-            <div class="col-sm-10">
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="consulta"></textarea>
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">Motivo</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="motivo" name="motivo">
+                                    <option value="">Seleccione opción</option>
+                                    <option value="incribir">Inscribir ramo</option>
+                                    <option value="cupo">Cupo de ramo</option>
+                                    <option value="solicitar cupo">Solicitar cupo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">Consulta</label>
+                            <div class="col-sm-10">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="consulta"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-danger" type="submit" name="enviar">Enviar</button>
+                            </div>
+                        </div>  
+                    </form>
+                </div>
             </div>
-          </div>
-          
-          <div class="form-group row">
-            <div class="col-sm-12">
-              <button class="btn btn-danger" type="submit" name="enviar">Enviar</button>
-            </div>
-          </div>  
-        </form>
-      </div>
-    </div>
-  </section>
-      
-</body>
+        </section>    
+    </body>
 </html>
