@@ -1,4 +1,6 @@
- $( document ).ready( function () {
+//Archivo con las reglas de validacion de las distintas formas de la pagina
+//Se utiliza el archivo jquery.validate.js descargado de www.jqueryvalidate.com
+$( document ).ready( function () {
      
      $( "#formaContacto" ).validate( {
         rules: {

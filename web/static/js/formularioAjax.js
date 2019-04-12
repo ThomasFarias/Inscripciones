@@ -1,8 +1,12 @@
+//Función que válida la FORMA de LOGIN
 $(document).ready(function(){
        $( "#enviar" ).click(function()
        {   
+          //Datos de los campos de la forma.
           var usuario=$('#correo').val();
           var password=$( '#password' ).val();
+          //Se llama al servlet y se le pasan los datos. Si tiene exito
+          //recibe data = exito y reenvia a la lista de contactos.
           $.ajax({
                type: "POST",
                url:"ServletLogin",

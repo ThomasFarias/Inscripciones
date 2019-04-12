@@ -1,3 +1,4 @@
+//Archivo con funciones relacionadas al template.
 (function($) {
   "use strict"; // Start of use strict
 
