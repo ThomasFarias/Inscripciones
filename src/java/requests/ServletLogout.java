@@ -6,6 +6,7 @@
 package requests;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,39 +15,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.UsuarioFacadeLocal;
+
 /**
  *
- * @author Thomas y Matías
+ * @author matia
  */
-public class ServletLogin extends HttpServlet {
-
+public class ServletLogout extends HttpServlet {
     @EJB UsuarioFacadeLocal usuario;
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        //Elementos de la respuesta al navegador.
+        response.setContentType("text/html;charset=UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session=request.getSession();
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/ServletContactos");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
         
-        //Variables para autenticacion
-        String email = request.getParameter("email");;
-        String password  = request.getParameter("password");
+        session.invalidate();
         
-        //Autenticar con los datos obtenidos.        
-        usuario.authenticate(email,password);
-    
-        if(usuario.isLogged())
-        {
-            session.setAttribute("nombre",usuario.getByMail(email).getNombre());
-            session.setAttribute("isLogged",true);
-        }
-        else
-        {
-            rd = getServletContext().getRequestDispatcher("/login.jsp");
-        }
         rd.forward(request, response);
+        
         
         
     }

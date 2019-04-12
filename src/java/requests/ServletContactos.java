@@ -5,7 +5,11 @@
  */
 package requests;
 
+import entities.Contacto;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,42 +17,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.UsuarioFacadeLocal;
+import models.ContactoFacadeLocal;
+
 /**
  *
- * @author Thomas y Matías
+ * @author matia
  */
-public class ServletLogin extends HttpServlet {
-
-    @EJB UsuarioFacadeLocal usuario;
+public class ServletContactos extends HttpServlet {
     
+@EJB ContactoFacadeLocal contactoFacade;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         //Elementos de la respuesta al navegador.
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session=request.getSession();
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/ServletContactos");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/lista_contactos.jsp");
         
-        //Variables para autenticacion
-        String email = request.getParameter("email");;
-        String password  = request.getParameter("password");
-        
-        //Autenticar con los datos obtenidos.        
-        usuario.authenticate(email,password);
-    
-        if(usuario.isLogged())
-        {
-            session.setAttribute("nombre",usuario.getByMail(email).getNombre());
-            session.setAttribute("isLogged",true);
-        }
-        else
-        {
-            rd = getServletContext().getRequestDispatcher("/login.jsp");
-        }
+        List<Contacto> contactos = new ArrayList<>();
+        contactos = contactoFacade.findAll();
+        request.setAttribute("contactos",contactos);
         rd.forward(request, response);
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

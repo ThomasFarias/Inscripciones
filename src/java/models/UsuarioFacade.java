@@ -9,8 +9,6 @@ import entities.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateful;
-import javax.ejb.Stateless;
-import javax.enterprise.context.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -18,11 +16,14 @@ import javax.persistence.PersistenceContext;
  *
  * @author matia
  */
-@Stateless
+@Stateful
 
 public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
 
-    boolean isLogged = false;
+    public boolean isLogged = false;
+    public String nombre;
+    public String apellidos;
+    public String mail;
     
     @PersistenceContext(unitName = "InscripcionesWebPU")
     private EntityManager em;
@@ -36,6 +37,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         super(Usuario.class);
     }
     
+    //Obtener un usuario con la direccion de correo, si no existe retorna null
     @Override
      public Usuario getByMail(String mail)
      {
@@ -50,12 +52,19 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
      }
      
     @Override
-     public boolean authenticate(String email, String password)
+     public boolean authenticate(String mail, String password)
      {
-        Usuario usr = getByMail(email);
+        //usuario temporal para comparar el mail y password
+        Usuario usr = getByMail(mail);
+        
         if(usr != null && usr.getPassword().compareTo(password)==0)
         {
+            //Si las credenciales son correctas se guardan los datos del usuario en la fachada.
             this.isLogged = true;
+            this.nombre = usr.getNombre();
+            this.apellidos = usr.getApellidos();
+            this.mail = usr.getEmail();
+            
             return true;
         }
         else
@@ -64,10 +73,20 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         }
      }
      
+    @Override
      public boolean isLogged()
      {
          return this.isLogged;
      }
      
-    
+     @Override
+     public void logout()
+     {
+         this.isLogged = false;
+         this.nombre = "";
+         this.apellidos ="";
+         this.mail ="";
+     }
+     
+
 }

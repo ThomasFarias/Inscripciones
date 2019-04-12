@@ -9,7 +9,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="usuario" class="models.UsuarioFacade" scope="session" />
 <!DOCTYPE html>
-﻿<!DOCTYPE html>
 <!-- Menú Navegacion -->
 <html>
   <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top" id="mainNav">
@@ -17,7 +16,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="agregar.jsp">Inicio</a>
+            <a class="nav-link js-scroll-trigger" href="index.jsp">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="nosotros.jsp">Nosotros</a>
@@ -25,29 +24,33 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="contacto.jsp">Contacto</a>
           </li>
-          <li class="nav-item">
-              <% 
-                  UsuarioFacadeLocal us;            
-                  boolean flag = false;  
-                  
+          
+           <%                   
                   try{
-                      us=(UsuarioFacadeLocal)session.getAttribute("user");
-                      flag=us.isLogged();                       
-                      
+                      if((Boolean)session.getAttribute("isLogged"))
+                      {
+                        usuario.isLogged = true;
+                        usuario.nombre = (String)session.getAttribute("nombre");       
+                      }
                   }catch(Exception ex){
-                  }            
-              
-                   if(flag)
-              {                 
-                  out.println("<a class=\"nav-link js-scroll-trigger\" href=\"login.jsp\">Agregar Usuario</a>");
+                       System.out.println("ERROR");
+                  }
+ %>
+ 
+             <%
+                if(usuario.isLogged)
+              {                                                                 
+                  out.println("<li class=\"nav-item\"> <a class=\"nav-link js-scroll-trigger\" href=\"agregar.jsp\">Agregar Usuario</a></li>");
+                  out.println("<li class=\"nav-item\"> <a class=\"nav-link js-scroll-trigger\" href=\"ServletContactos\">Lista Contactos</a></li>");
+                  out.println("<li class=\"nav-item\"> <a class=\"nav-link js-scroll-trigger\" style=\"color:#A32525;\" href=\"ServletLogout\">Salir</a></li>");
               } else
               {                 
-                out.println("<a class=\"nav-link js-scroll-trigger\" href=\"login.jsp\">Iniciar Sesión</a>");
+                out.println("<li class=\"nav-item\"> <a class=\"nav-link js-scroll-trigger\" href=\"login.jsp\">Iniciar Sesión</a></li>");
 
               }
                      
               %>
-          </li>
+          
         </ul>
       </div>
     </div>

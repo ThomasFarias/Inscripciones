@@ -32,10 +32,10 @@ public interface UsuarioFacadeLocal {
     
     Usuario getByMail(String mail);
     
-    boolean authenticate(String email, String password);
+    boolean authenticate(String mail, String password);
     
     boolean isLogged();
     
-    
+    void logout();
     
 }

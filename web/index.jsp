@@ -9,10 +9,10 @@
                 <div class="row h-100">
                     <div class="col-lg-7 my-auto">
                         <div class="header-content mx-auto">
-                            <h1 class="mb-5">Bienvenido a la pagina de inscripción de ramos.</h1>
+                            <h1 class="mb-5"> Bienvenido a la pagina de inscripción de ramos.</h1>
                             <a href="#download" class="btn btn-outline btn-xl js-scroll-trigger">Comenzar</a>
                         </div>
-                    </div>
+                    </div> 
                 <div class="col-lg-5 my-auto">
                     <div class="device-container">
                         <div class="device-mockup iphone6_plus portrait white">
