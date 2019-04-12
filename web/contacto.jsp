@@ -14,6 +14,7 @@
                 <h2>Contacto</h2>
                 <p class="text-muted">Envía tu consulta.</p>
                 <div class=" d-flex justify-content-center pt-4">
+                    
                     <%-- FORMULARIO CONTACTO--%>
                     <form method="post" class="col-7" id="formaContacto" action="ServletForm"> 
                         
@@ -42,7 +43,7 @@
                             <label  class="col-sm-2 col-form-label">Motivo</label>
                             <div class="col-sm-10">
                                 <select class="form-control" id="motivo" name="motivo">
-                                    <option value="">Seleccione opción</option>
+                                    <option value="" selected disabled hidden>Seleccione motivo</option>
                                     <option value="incribir">Inscribir ramo</option>
                                     <option value="cupo">Cupo de ramo</option>
                                     <option value="solicitar cupo">Solicitar cupo</option>
