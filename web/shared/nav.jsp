@@ -21,7 +21,7 @@
                         usuario.nombre = (String)session.getAttribute("nombre");       
                       }
                   }catch(Exception ex){
-                       System.out.println("ERROR DE SESION");
+                       System.out.println("No hay usuario autenticado.");
                   }
  %>
  
@@ -51,7 +51,7 @@
                   out.println("<li class=\"nav-item\"> <a class=\"nav-link js-scroll-trigger\" style=\"color:#A32525;\" href=\"ServletLogout\">Salir</a></li>");
               } else
               {                 
-                out.println("<li class=\"nav-item\"> <a class=\"nav-link js-scroll-trigger\" href=\"login.jsp\">Iniciar Sesión</a></li>");
+                out.println("<li class=\"nav-item\"> <a class=\"nav-link js-scroll-trigger\" href=\"http://localhost:8080/InscripcionesAdmin\">Iniciar Sesión</a></li>");
               }                   
               %>        
                 </ul>

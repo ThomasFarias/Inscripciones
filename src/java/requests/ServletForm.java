@@ -6,6 +6,7 @@
 package requests;
 
 import entities.Contacto;
+import entities.Contacto_obsoleto;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -54,7 +55,7 @@ public class ServletForm extends HttpServlet {
         motivo = request.getParameter("motivo");
         
         try{            
-            c.setIdContacto(null);
+            c.setIdContacto(contacto.count());
             c.setFechaEnvio(date);
             c.setNombreContacto(nombre);
             c.setMotivo(motivo);
@@ -62,6 +63,7 @@ public class ServletForm extends HttpServlet {
             c.setCorreo(email);
             c.setTelefono(Integer.parseInt(telefono)); 
             contacto.create(c);            
+            
         }catch(Exception e){
             System.out.println(e);
         }

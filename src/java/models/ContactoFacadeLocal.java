@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author tomas
+ * @author tarkus
  */
 @Local
 public interface ContactoFacadeLocal {

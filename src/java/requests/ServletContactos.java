@@ -6,6 +6,7 @@
 package requests;
 
 import entities.Contacto;
+import entities.Contacto_obsoleto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
