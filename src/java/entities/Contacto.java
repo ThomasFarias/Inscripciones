@@ -1,6 +1,7 @@
 /*
-    CLASE ENTIDAD CONTACTO
-    REPRESENTA LA TABLA inscripciones.CONTACTO DE LA BASE DE DATOS
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package entities;
 
@@ -23,26 +24,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Thomas
+ * @author tomas
  */
 @Entity
-@Table(name = "contacto", catalog = "inscripciones", schema = "")
+@Table(name = "contacto", catalog = "inscripcionesadmin", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Contacto.findAll", query = "SELECT c FROM Contacto c")
-    , @NamedQuery(name = "Contacto.findByIdContacto", query = "SELECT c FROM Contacto c WHERE c.idContacto = :idContacto")
-    , @NamedQuery(name = "Contacto.findByNombreContacto", query = "SELECT c FROM Contacto c WHERE c.nombreContacto = :nombreContacto")
-    , @NamedQuery(name = "Contacto.findByCorreo", query = "SELECT c FROM Contacto c WHERE c.correo = :correo")
-    , @NamedQuery(name = "Contacto.findByTelefono", query = "SELECT c FROM Contacto c WHERE c.telefono = :telefono")
-    , @NamedQuery(name = "Contacto.findByMotivo", query = "SELECT c FROM Contacto c WHERE c.motivo = :motivo")
-    , @NamedQuery(name = "Contacto.findByRequerimiento", query = "SELECT c FROM Contacto c WHERE c.requerimiento = :requerimiento")
-    , @NamedQuery(name = "Contacto.findByFechaEnvio", query = "SELECT c FROM Contacto c WHERE c.fechaEnvio = :fechaEnvio")})
+    @NamedQuery(name = "Contacto.findAll", query = "SELECT c FROM Contacto c"),
+    @NamedQuery(name = "Contacto.findByIdContacto", query = "SELECT c FROM Contacto c WHERE c.idContacto = :idContacto"),
+    @NamedQuery(name = "Contacto.findByNombreContacto", query = "SELECT c FROM Contacto c WHERE c.nombreContacto = :nombreContacto"),
+    @NamedQuery(name = "Contacto.findByCorreo", query = "SELECT c FROM Contacto c WHERE c.correo = :correo"),
+    @NamedQuery(name = "Contacto.findByTelefono", query = "SELECT c FROM Contacto c WHERE c.telefono = :telefono"),
+    @NamedQuery(name = "Contacto.findByMotivo", query = "SELECT c FROM Contacto c WHERE c.motivo = :motivo"),
+    @NamedQuery(name = "Contacto.findByRequerimiento", query = "SELECT c FROM Contacto c WHERE c.requerimiento = :requerimiento"),
+    @NamedQuery(name = "Contacto.findByFechaEnvio", query = "SELECT c FROM Contacto c WHERE c.fechaEnvio = :fechaEnvio")})
 public class Contacto implements Serializable {
-
-    @Column(name = "fecha_envio")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaEnvio;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,7 +69,9 @@ public class Contacto implements Serializable {
     @Size(min = 1, max = 300)
     @Column(name = "REQUERIMIENTO", nullable = false, length = 300)
     private String requerimiento;
-    
+    @Column(name = "FECHA_ENVIO")
+    @Temporal(TemporalType.DATE)
+    private Date fechaEnvio;
 
     public Contacto() {
     }
@@ -140,7 +138,6 @@ public class Contacto implements Serializable {
     }
 
     public Date getFechaEnvio() {
-        
         return fechaEnvio;
     }
 
@@ -172,6 +169,5 @@ public class Contacto implements Serializable {
     public String toString() {
         return "entities.Contacto[ idContacto=" + idContacto + " ]";
     }
-
     
 }

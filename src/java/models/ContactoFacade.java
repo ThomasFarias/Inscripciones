@@ -12,11 +12,10 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Thomas
+ * @author tomas
  */
 @Stateless
 public class ContactoFacade extends AbstractFacade<Contacto> implements ContactoFacadeLocal {
-
     @PersistenceContext(unitName = "InscripcionesWebPU")
     private EntityManager em;
 
